@@ -1,0 +1,105 @@
+
+
+import React from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Search } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { setSearchedQuery } from "@/redux/jobSlice";
+import { useNavigate , Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { MoveRight, PhoneCall } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const HeroSection = () => {
+  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const searchJobHandler = () => {
+    dispatch(setSearchedQuery(query));
+    navigate("/browse");
+  };
+
+  const [titleNumber, setTitleNumber] = useState(0);
+  const titles = useMemo(
+    () => ["Opportunity","Remote Job", "Career", "Tech Role", "Startup"],
+    []
+  );
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (titleNumber === titles.length - 1) {
+        setTitleNumber(0);
+      } else {
+        setTitleNumber(titleNumber + 1);
+      }
+    }, 2000);
+    return () => clearTimeout(timeoutId);
+  }, [titleNumber, titles]);
+
+  return (
+    <div className="w-full">
+      <div className="container mx-auto">
+        <div className="flex gap-8 pt-20 pb-8 lg:py-10 items-center justify-center flex-col">
+          <div>
+            <Button variant="secondary" size="lg"  className='text-[#6A38C2] gap-4'>
+            Your Dream Job Awaits – Start Your Journey Today
+            </Button>
+          </div>
+          <div className="flex gap-4 flex-col">
+            <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
+              <span className="text-spektr-cyan-50">Find Your Next</span>
+              <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
+                &nbsp;
+                {titles.map((title, index) => (
+                  <motion.span
+                    key={index}
+                    className="absolute font-semibold"
+                    initial={{ opacity: 0, y: "-100" }}
+                    transition={{ type: "spring", stiffness: 50 }}
+                    animate={
+                      titleNumber === index
+                        ? {
+                            y: 0,
+                            opacity: 1,
+                          }
+                        : {
+                            y: titleNumber > index ? -150 : 150,
+                            opacity: 0,
+                          }
+                    }
+                  >
+                    {title}
+                  </motion.span>
+                ))}
+              </span>
+            </h1>
+
+            <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
+            Whether you're looking for your first job, a career change, or the next step in your professional journey, we’ve got you covered. Create your profile, upload your resume, and let employers find you.
+            </p>
+          </div>
+
+          <div className="flex w-[40%] shadow-lg border border-gray-200 pl-3 rounded-full items-center gap-4 mx-auto">
+            <input
+              type="text"
+              placeholder="Search your dream jobs"
+              onChange={(e) => setQuery(e.target.value)}
+              className="outline-none border-none w-full"
+            />
+            <Button
+              onClick={searchJobHandler}
+              className="rounded-r-full bg-[#6A38C2]"
+            >
+              <Search className="h-5 w-5" />
+            </Button>
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HeroSection;
