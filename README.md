@@ -1,6 +1,6 @@
 ****Job Portal (MERN Stack)****
 
-This is a Full Stack Job Portal application built using the MERN stack (MongoDB, Express.js, React, Node.js) and integrated with Video.js for enhanced video features. The platform allows job seekers to browse job listings, and employers to post jobs, and supports features such as user authentication, job search, and profile management.
+This is a Full Stack Job Portal application built using the MERN stack (MongoDB, Express.js, React, Node.js) . The platform allows job seekers to browse job listings, and employers to post jobs, and supports features such as user authentication, job search, and profile management.
 
 ****Features****
 
