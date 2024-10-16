@@ -65,8 +65,9 @@ const Feature = () => (
             autoPlay
             loop
             muted
+            playsInline={true}
           >
-            <source src={featureVideo} playsInline={true} type="video/mp4" />
+            <source src={featureVideo} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
