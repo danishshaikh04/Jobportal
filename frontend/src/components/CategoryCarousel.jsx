@@ -11,24 +11,34 @@ const category = [
     "Data Science",
     "Graphic Designer",
     "FullStack Developer"
-]
+];
 
 const CategoryCarousel = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const searchJobHandler = (query) => {
         dispatch(setSearchedQuery(query));
         navigate("/browse");
-    }
+    };
 
     return (
-        <div>
+        <div className="w-full overflow-hidden">
             <Carousel className="w-full max-w-xl mx-auto my-10">
-                <CarouselContent>
+                <CarouselContent className="flex flex-nowrap ">
                     {
                         category.map((cat, index) => (
-                            <CarouselItem className="md:basis-1/3 lg-basis-1/3">
-                                <Button onClick={()=>searchJobHandler(cat)} variant="outline" className="rounded-full">{cat}</Button>
+                            <CarouselItem 
+                                key={index}
+                                className="flex-shrink-0  sm:basis-1/12 md:basis-1/2 lg:basis-1/3 "
+                            >
+                                <Button 
+                                    onClick={() => searchJobHandler(cat)} 
+                                    variant="outline" 
+                                    className=" rounded-full text-sm sm:text-base md:text-lg"
+                                >
+                                    {cat}
+                                </Button>
                             </CarouselItem>
                         ))
                     }
@@ -37,7 +47,7 @@ const CategoryCarousel = () => {
                 <CarouselNext />
             </Carousel>
         </div>
-    )
-}
+    );
+};
 
-export default CategoryCarousel
+export default CategoryCarousel;

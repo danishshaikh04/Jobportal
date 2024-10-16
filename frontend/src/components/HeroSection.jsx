@@ -1,13 +1,9 @@
-
-
-import React from "react";
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { setSearchedQuery } from "@/redux/jobSlice";
-import { useNavigate , Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { MoveRight, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
@@ -22,7 +18,7 @@ const HeroSection = () => {
 
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ["Opportunity","Remote Job", "Career", "Tech Role", "Startup"],
+    () => ["Opportunity", "Remote Job", "Career", "Tech Role", "Startup"],
     []
   );
 
@@ -40,14 +36,19 @@ const HeroSection = () => {
   return (
     <div className="w-full">
       <div className="container mx-auto">
-        <div className="flex gap-8 pt-20 pb-8 lg:py-10 items-center justify-center flex-col">
+        <div className="flex flex-col items-center justify-center gap-8 pt-16 pb-8 lg:py-10">
           <div>
-            <Button variant="secondary" size="lg"  className='text-[#6A38C2] gap-4'>
-            Your Dream Job Awaits – Start Your Journey Today
+            <Button
+              variant="secondary"
+              size="md"
+              className="text-[#6A38C2] gap-4 h-5 py-5 px-5 rounded-full"
+            >
+              Your Dream Job Awaits – Start Your Journey Today
             </Button>
           </div>
-          <div className="flex gap-4 flex-col">
-            <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
+
+          <div className="flex flex-col items-center gap-4">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl tracking-tighter text-center font-regular">
               <span className="text-spektr-cyan-50">Find Your Next</span>
               <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
                 &nbsp;
@@ -75,12 +76,15 @@ const HeroSection = () => {
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
-            Whether you're looking for your first job, a career change, or the next step in your professional journey, we’ve got you covered. Create your profile, upload your resume, and let employers find you.
+            <p className="text-sm sm:text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-lg md:max-w-2xl text-center">
+              Whether you're looking for your first job, a career change, or the
+              next step in your professional journey, we’ve got you covered.
+              Create your profile, upload your resume, and let employers find
+              you.
             </p>
           </div>
 
-          <div className="flex w-[40%] shadow-lg border border-gray-200 pl-3 rounded-full items-center gap-4 mx-auto">
+          <div className="flex w-full sm:w-[90%] md:w-[80%] lg:w-[60%] shadow-lg border border-gray-200 pl-3 rounded-full items-center gap-4 mx-auto">
             <input
               type="text"
               placeholder="Search your dream jobs"
@@ -94,8 +98,6 @@ const HeroSection = () => {
               <Search className="h-5 w-5" />
             </Button>
           </div>
-
-          
         </div>
       </div>
     </div>
