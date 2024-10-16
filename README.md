@@ -12,7 +12,7 @@ Job Listings: Employers can post job vacancies, and job seekers can search and a
 
 Profile Management: Users can create and update their profiles.
 
-Job Application Tracking: Track the status of job applications (applied, shortlisted, rejected, etc.).
+Job Application Tracking: Track the status of job applications (applied, shortlisted, rejected, etc.)   .
 
 
 **Tech Stack**
