@@ -43,6 +43,7 @@ Clone the repository:
 bash
 
 git clone https://github.com/danishshaikh04/Jobportal.git
+
 Navigate to the project directory:
 
 bash
