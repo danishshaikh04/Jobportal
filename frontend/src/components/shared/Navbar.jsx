@@ -20,17 +20,34 @@ const Navbar = () => {
       const res = await axios.get(`${USER_API_END_POINT}/logout`, {
         withCredentials: true,
       });
+  
       if (res.data.success) {
-        dispatch(setUser(null));
-        navigate("/");
-        toast.success(res.data.message);
+        dispatch(setUser(null));  // Clear user data
+        navigate("/");            // Navigate to the home page
+        toast.success(res?.data?.message || "Logged out successfully");
       }
     } catch (error) {
-      console.log(error);
-      toast.error(error.response.data.message);
+      // Log the full error object for debugging
+      console.error("Full Error: ", error);
+  
+      if (error.response) {
+        console.error("Error Response: ", error.response);
+  
+        if (error?.response?.data && error?.response?.data?.message) {
+          // Show specific error message from the API response
+          toast.error(error?.response?.data?.message);
+        } else {
+          // Fallback in case there's no message in the API response
+          toast.error("Error: Unable to log out. Please try again later.");
+        }
+      } else {
+        // Handle other unexpected errors
+        toast.error("Network error. Please check your connection.");
+      }
     }
   };
-
+  
+  
   return (
     <div className="bg-white shadow-sm">
       <div className="flex items-center justify-between px-4 md:px-6 lg:px-8 xl:px-10 mx-auto max-w-7xl h-16">
