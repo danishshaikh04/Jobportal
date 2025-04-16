@@ -120,9 +120,9 @@ const Signup = () => {
                             placeholder="Password"
                         />
                     </div>
-                    <div className='flex items-center justify-between'>
+                    <div className='flex sm:flex-row sm:items-center items-center justify-between'>
                         <RadioGroup className="flex items-center gap-4 my-5">
-                            <div className="flex items-center space-x-2">
+                            <div className="flex  items-center space-x-2">
                                 <Input
                                     type="radio"
                                     name="role"
