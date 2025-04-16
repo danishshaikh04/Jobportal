@@ -146,7 +146,7 @@ const Signup = () => {
     </div>
   </RadioGroup>
   
-  <div className='flex items-center gap-2'>
+  <div className='flex  sm:flex-row items-center gap-2'>
     <Label>Profile</Label>
     <Input
       accept="image/*"
