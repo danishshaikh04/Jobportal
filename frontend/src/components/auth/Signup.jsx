@@ -56,7 +56,14 @@ const Signup = () => {
             }
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.message);
+        
+            if (error.response) {
+                toast.error(error.response.data.message);
+            } else if (error.code === 'ERR_NETWORK') {
+                toast.error("No internet connection. Please check your network.");
+            } else {
+                toast.error("Something went wrong. Please try again.");
+            }
         } finally{
             dispatch(setLoading(false));
         }
