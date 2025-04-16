@@ -120,41 +120,42 @@ const Signup = () => {
                             placeholder="Password"
                         />
                     </div>
-                    <div className='flex sm:flex-row sm:items-center items-center justify-between'>
-                        <RadioGroup className="flex items-center gap-4 my-5">
-                            <div className="flex  items-center space-x-2">
-                                <Input
-                                    type="radio"
-                                    name="role"
-                                    value="student"
-                                    checked={input.role === 'student'}
-                                    onChange={changeEventHandler}
-                                    className="cursor-pointer"
-                                />
-                                <Label htmlFor="r1">Student</Label>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <Input
-                                    type="radio"
-                                    name="role"
-                                    value="recruiter"
-                                    checked={input.role === 'recruiter'}
-                                    onChange={changeEventHandler}
-                                    className="cursor-pointer"
-                                />
-                                <Label htmlFor="r2">Recruiter</Label>
-                            </div>
-                        </RadioGroup>
-                        <div className='flex items-center gap-2'>
-                            <Label>Profile</Label>
-                            <Input
-                                accept="image/*"
-                                type="file"
-                                onChange={changeFileHandler}
-                                className="cursor-pointer"
-                            />
-                        </div>
-                    </div>
+                    <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4'>
+  <RadioGroup className="flex flex-col sm:flex-row items-start sm:items-center gap-4 my-5">
+    <div className="flex items-center space-x-2">
+      <Input
+        type="radio"
+        name="role"
+        value="student"
+        checked={input.role === 'student'}
+        onChange={changeEventHandler}
+        className="cursor-pointer"
+      />
+      <Label htmlFor="r1">Student</Label>
+    </div>
+    <div className="flex items-center space-x-2">
+      <Input
+        type="radio"
+        name="role"
+        value="recruiter"
+        checked={input.role === 'recruiter'}
+        onChange={changeEventHandler}
+        className="cursor-pointer"
+      />
+      <Label htmlFor="r2">Recruiter</Label>
+    </div>
+  </RadioGroup>
+  
+  <div className='flex items-center gap-2'>
+    <Label>Profile</Label>
+    <Input
+      accept="image/*"
+      type="file"
+      onChange={changeFileHandler}
+      className="cursor-pointer"
+    />
+  </div>
+</div>
                     {
                         loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Signup</Button>
                     }
