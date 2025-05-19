@@ -63,8 +63,11 @@ Create a .env file in the root directory and add the following variables:
 **env**
 
 MONGO_URI=your_mongodb_connection_string
+
 JWT_SECRET=your_jwt_secret_key
+
 CLOUDINARY_API_KEY=your_cloudinary_api_key
+
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 
 
