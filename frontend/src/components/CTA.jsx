@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const CTA = () => (
   <div className="w-full pb-16">
     <div className="container mx-auto px-4">
-      <div className="flex flex-col text-center bg-violet-100 rounded-md p-6 md:p-10 lg:p-14 gap-8 items-center">
+      <div className="flex flex-col text-center text-black dark:text-white bg-violet-100 dark:bg-violet-900 rounded-md p-6 md:p-10 lg:p-14 gap-8 items-center">
         {/* Badge Section */}
         <div>
           <Badge>Get started</Badge>
@@ -17,7 +17,7 @@ const CTA = () => (
           <h3 className="text-2xl md:text-4xl lg:text-5xl tracking-tighter max-w-xl font-regular">
             Try our platform today!
           </h3>
-          <p className="text-sm md:text-lg leading-relaxed tracking-tight text-muted-foreground max-w-xl">
+          <p className="text-sm md:text-lg leading-relaxed tracking-tight text-muted-foreground dark:text-gray-400 max-w-xl">
             Unlock your career potential with our user-friendly job portal! 
             Whether you’re seeking your dream job or looking to hire top talent, 
             we have the tools and resources to help you succeed. 

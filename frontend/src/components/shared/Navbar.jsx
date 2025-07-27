@@ -20,46 +20,44 @@ const Navbar = () => {
       const res = await axios.get(`${USER_API_END_POINT}/logout`, {
         withCredentials: true,
       });
-  
+
       if (res.data.success) {
-        dispatch(setUser(null));  // Clear user data
-        navigate("/");            // Navigate to the home page
+        dispatch(setUser(null));
+        navigate("/");
         toast.success(res?.data?.message || "Logged out successfully");
       }
     } catch (error) {
-      // Log the full error object for debugging
       console.error("Full Error: ", error);
-  
       if (error.response) {
-        console.error("Error Response: ", error.response);
-  
-        if (error?.response?.data && error?.response?.data?.message) {
-          // Show specific error message from the API response
-          toast.error(error?.response?.data?.message);
+        if (error?.response?.data?.message) {
+          toast.error(error.response.data.message);
         } else {
-          // Fallback in case there's no message in the API response
           toast.error("Error: Unable to log out. Please try again later.");
         }
       } else {
-        // Handle other unexpected errors
         toast.error("Network error. Please check your connection.");
       }
     }
   };
-  
-  
+
+  const toggleTheme = () => {
+    document.documentElement.classList.toggle("dark");
+  };
+
   return (
-    <div className="bg-white shadow-sm">
+    <div className="bg-white dark:bg-gray-900 shadow-sm">
       <div className="flex items-center justify-between px-4 md:px-6 lg:px-8 xl:px-10 mx-auto max-w-7xl h-16">
         <div>
           <Link to="/">
-            <h1 className="text-lg md:text-xl lg:text-2xl font-bold">
+            <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-black dark:text-white">
               Job<span className="text-[#6A38C2]">Portal</span>
             </h1>
           </Link>
         </div>
+
+        {/* Desktop View */}
         <div className="hidden md:flex items-center gap-4 md:gap-8">
-          <ul className="font-medium flex items-center gap-5">
+          <ul className="font-medium flex items-center gap-5 text-black dark:text-white">
             {user && user.role === "recruiter" ? (
               <>
                 <li>
@@ -83,6 +81,15 @@ const Navbar = () => {
               </>
             )}
           </ul>
+
+          {/* Toggle Dark Mode Button */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 bg-primary text-primary-foreground rounded"
+          >
+            🌓
+          </button>
+
           {!user ? (
             <div className="flex items-center gap-2">
               <Link to="/login">
@@ -107,7 +114,7 @@ const Navbar = () => {
               <PopoverContent className="w-80">
                 <div>
                   <div className="flex gap-2 space-y-2">
-                    <Avatar className="cursor-pointer">
+                    <Avatar>
                       <AvatarImage
                         src={user?.profile?.profilePhoto}
                         alt="@shadcn"
@@ -125,12 +132,10 @@ const Navbar = () => {
                       <div className="flex w-fit items-center gap-2 cursor-pointer">
                         <User2 />
                         <Button variant="link">
-                          {" "}
                           <Link to="/profile">View Profile</Link>
                         </Button>
                       </div>
                     )}
-
                     <div className="flex w-fit items-center gap-2 cursor-pointer">
                       <LogOut />
                       <Button onClick={logoutHandler} variant="link">
@@ -143,62 +148,72 @@ const Navbar = () => {
             </Popover>
           )}
         </div>
-        {/* Mobile Avatar and Menu */}
+
+        {/* Mobile View */}
         <div className="flex md:hidden items-center gap-2 ml-auto">
           {user && (
-           <Popover>
-           <PopoverTrigger asChild>
-             <Avatar className="cursor-pointer">
-               <AvatarImage
-                 src={user?.profile?.profilePhoto}
-                 alt="@shadcn"
-               />
-             </Avatar>
-           </PopoverTrigger>
-           <PopoverContent className="w-80">
-             <div>
-               <div className="flex gap-2 space-y-2">
-                 <Avatar className="cursor-pointer">
-                   <AvatarImage
-                     src={user?.profile?.profilePhoto}
-                     alt="@shadcn"
-                   />
-                 </Avatar>
-                 <div>
-                   <h4 className="font-medium">{user?.fullname}</h4>
-                   <p className="text-sm text-muted-foreground">
-                     {user?.profile?.bio}
-                   </p>
-                 </div>
-               </div>
-               <div className="flex flex-col my-2 text-gray-600">
-                 {user && user.role === "student" && (
-                   <div className="flex w-fit items-center gap-2 cursor-pointer">
-                     <User2 />
-                     <Button variant="link">
-                       {" "}
-                       <Link to="/profile">View Profile</Link>
-                     </Button>
-                   </div>
-                 )}
-
-                 <div className="flex w-fit items-center gap-2 cursor-pointer">
-                   <LogOut />
-                   <Button onClick={logoutHandler} variant="link">
-                     Logout
-                   </Button>
-                 </div>
-               </div>
-             </div>
-           </PopoverContent>
-         </Popover>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Avatar className="cursor-pointer">
+                  <AvatarImage
+                    src={user?.profile?.profilePhoto}
+                    alt="@shadcn"
+                  />
+                </Avatar>
+              </PopoverTrigger>
+              <PopoverContent className="w-80">
+                <div>
+                  <div className="flex gap-2 space-y-2">
+                    <Avatar>
+                      <AvatarImage
+                        src={user?.profile?.profilePhoto}
+                        alt="@shadcn"
+                      />
+                    </Avatar>
+                    <div>
+                      <h4 className="font-medium">{user?.fullname}</h4>
+                      <p className="text-sm text-muted-foreground">
+                        {user?.profile?.bio}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col my-2 text-gray-600">
+                    {user && user.role === "student" && (
+                      <div className="flex w-fit items-center gap-2 cursor-pointer">
+                        <User2 />
+                        <Button variant="link">
+                          <Link to="/profile">View Profile</Link>
+                        </Button>
+                      </div>
+                    )}
+                    <div className="flex w-fit items-center gap-2 cursor-pointer">
+                      <LogOut />
+                      <Button onClick={logoutHandler} variant="link">
+                        Logout
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
           )}
+
+          {/* Mobile Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 bg-primary text-primary-foreground rounded"
+          >
+            🌓
+          </button>
+
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline"><Menu /></Button>
+              <Button variant="outline">
+                <Menu />
+              </Button>
             </PopoverTrigger>
             <PopoverContent>
-              <ul className="flex flex-col font-medium items-start gap-5 p-4">
+              <ul className="flex flex-col font-medium items-start gap-5 p-4 text-black dark:text-white">
                 {user && user.role === "recruiter" ? (
                   <>
                     <li>

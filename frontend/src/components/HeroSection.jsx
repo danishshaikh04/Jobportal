@@ -34,14 +34,16 @@ const HeroSection = () => {
   }, [titleNumber, titles]);
 
   return (
+   
     <div className="w-full">
+      
       <div className="container mx-auto">
         <div className="flex flex-col items-center justify-center gap-8 pt-16 pb-8 lg:py-10">
           <div>
             <Button
               variant="secondary"
               size="md"
-              className="text-[#6A38C2] gap-4 h-5 py-5 px-5 rounded-full"
+              className="text-[#6A38C2] gap-4 h-5 b py-5 px-5 bg-white rounded-full"
             >
               Your Dream Job Awaits – Start Your Journey Today
             </Button>
@@ -84,16 +86,16 @@ const HeroSection = () => {
             </p>
           </div>
 
-          <div className="flex w-full sm:w-[90%] md:w-[80%] lg:w-[60%] shadow-lg border border-gray-200 pl-3 rounded-full items-center gap-4 mx-auto">
+          <div className="flex w-full sm:w-[90%] md:w-[80%] lg:w-[60%] shadow-lg border border-gray-200 pl-3 bg-white  rounded-full items-center gap-4 mx-auto">
             <input
               type="text"
               placeholder="Search your dream jobs"
               onChange={(e) => setQuery(e.target.value)}
-              className="outline-none border-none w-full"
+              className="outline-none   border-none border-purple-400 bg-inherit w-full"
             />
             <Button
               onClick={searchJobHandler}
-              className="rounded-r-full bg-[#6A38C2]"
+              className="rounded-r-full "
             >
               <Search className="h-5 w-5" />
             </Button>
